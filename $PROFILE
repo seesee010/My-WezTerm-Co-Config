@@ -1,0 +1,34 @@
+# Module - color for ls command
+Import-Module Get-ChildItemColor -ErrorAction SilentlyContinue
+
+Remove-Item Alias:ls -ErrorAction SilentlyContinue
+function ls { Get-ChildItemColorFormatWide @args }
+
+# Color for PS C:\Users\SeeSee1> -- ORANGE --
+function prompt {
+  $esc    = [char]27
+  $orange = "$esc[38;5;208m"
+  $green  = "$esc[38;5;10m"
+  $red    = "$esc[38;5;9m"
+  $reset  = "$esc[0m"
+  $path   = (Get-Location)
+
+  # Is Status "OK"?
+  if ($Error.Count -gt 0) {
+  	$status = "${red}LAST-CMD${reset}"
+	$error = "${red}ERROR${reset}"
+  } 
+  elseif ($?) {
+  	$status = "${green}Status${reset}"
+	$error = "${green}OK${reset}"
+  } 
+  else {
+  	$status = "${red}Status${reset}"
+	$error = "${red}ERROR"
+  }
+
+  "[${status}: ${error}] ${orange}${path}>${reset} "
+}
+
+# clear command
+Clear-Host
