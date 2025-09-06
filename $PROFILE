@@ -6,6 +6,11 @@ function ls { Get-ChildItemColorFormatWide @args }
 
 # Color for PS C:\Users\SeeSee1> -- ORANGE --
 function prompt {
+
+  # For Status Text
+  $isSuccess = $?
+  $isExitError    = $LASTEXITCODE
+
   $esc    = [char]27
   $orange = "$esc[38;5;208m"
   $green  = "$esc[38;5;10m"
@@ -14,21 +19,19 @@ function prompt {
   $path   = (Get-Location)
 
   # Is Status "OK"?
-  if ($Error.Count -gt 0) {
+  $wasLastOK = $isSuccess -and (($isExitError -eq $null) -or ($isExitError -eq 0))
+  
+  if (!$wasLastOK) {
   	$status = "${red}LAST-CMD${reset}"
 	$error = "${red}ERROR${reset}"
   } 
-  elseif ($?) {
+  else {
   	$status = "${green}Status${reset}"
 	$error = "${green}OK${reset}"
   } 
-  else {
-  	$status = "${red}Status${reset}"
-	$error = "${red}ERROR"
-  }
 
   "[${status}: ${error}] ${orange}${path}>${reset} "
 }
 
-# clear command
+# Command to clear Screen
 Clear-Host
