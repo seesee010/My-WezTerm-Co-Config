@@ -8,6 +8,9 @@ WezTerm is a terminal emulattor with miltiplexer support...
 Put `.wezterm.lua` into `~/` .
 Put `$PROFILE` into /$PROFILE, you can find by calling `$PROFILE`!
 
+## License
+Look up License File! 
+
 ---
 ---
 ---
