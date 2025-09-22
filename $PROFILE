@@ -1,56 +1,8 @@
 # Module - color for ls command
 Import-Module Get-ChildItemColor -ErrorAction SilentlyContinue
 
-# Code not working
-# Remove-Item Alias:ls -ErrorAction SilentlyContinue
-# function ls { Get-ChildItemColorFormatWide @args }
-
-# param
-$esc    = [char]27
-$orange = "$esc[38;5;208m"
-$green  = "$esc[38;5;10m"
-$red    = "$esc[38;5;9m"
-$reset  = "$esc[0m"
-
-# custom command: clear + ls
-function cl {
- 
-  Clear-Host
-  Get-ChildItem
-}
-
-# custom command: cd + ls
-function cdls {
-  param (
-  [Parameter(Mandatory = ${true})]
-	[string]${wantedPath}
-  )
-  
-  Set-Location ${wantedPath}
-  Get-ChildItem
-  "<${wantedPath}> -> <$(Get-Location)>"
-}
-
-# custom command: mkdir $FILE | cd
-function mkcd {
-  param (
-	[Parameter(Mandatory = ${true})]
-	[string]${FileName}
-  )
-
-  mkdir ${FileName}
-  Set-Location ${FileName}
-}
-
-# custom command: delcd $FILE // cd .. ; del $FILE with -Force
-function delcd {
-  ${currentPath} = Get-Location
-
-  Set-Location ..
-  Remove-Item -Recurse -Force ${currentPath}
-
-  "Deleted <${currentPath}> and cd .."
-}
+Remove-Item Alias:ls -ErrorAction SilentlyContinue
+function ls { Get-ChildItemColorFormatWide @args }
 
 # Color for PS C:\Users\SeeSee1> -- ORANGE --
 function prompt {
@@ -59,6 +11,11 @@ function prompt {
   $isSuccess = $?
   $isExitError    = $LASTEXITCODE
 
+  $esc    = [char]27
+  $orange = "$esc[38;5;208m"
+  $green  = "$esc[38;5;10m"
+  $red    = "$esc[38;5;9m"
+  $reset  = "$esc[0m"
   $path   = (Get-Location)
 
   # Is Status "OK"?
@@ -66,14 +23,14 @@ function prompt {
   
   if (!$wasLastOK) {
   	$status = "${red}LAST-CMD${reset}"
-	$errorCode = "${red}ERROR${reset}"
+	$error = "${red}ERROR${reset}"
   } 
   else {
   	$status = "${green}Status${reset}"
-	$errorCode = "${green}OK${reset}"
+	$error = "${green}OK${reset}"
   } 
 
-  "[${status}: ${errorCode}] ${orange}${path}>${reset} "
+  "[${status}: ${error}] ${orange}${path}>${reset} "
 }
 
 # Command to clear Screen
