@@ -52,6 +52,20 @@ function delcd {
   "Deleted <${currentPath}> and cd .."
 }
 
+# custom command: yes command from gnu/linux
+function yes {
+  param (
+    [string]${Text} = "Y",
+    [int]${Count}
+  )
+  
+  if ($PSBoundParameters.ContainsKey('Count')) {
+    1..$Count | ForEach-Object { $Text }
+  } else {
+    while ($true) { $Text }
+  }
+}
+
 # Color for PS C:\Users\SeeSee1> -- ORANGE --
 function prompt {
 
