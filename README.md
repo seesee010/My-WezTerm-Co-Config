@@ -1,18 +1,17 @@
-# My-WezTerm-Co-Config
+# My-WezTerm-Config
 My whole WezTerm Config
 
 ## About WezTerm
 WezTerm is a terminal emulattor with miltiplexer support... 
 
-## How2Use
-Put `.wezterm.lua` into `~/` .
-Put `$PROFILE` into /$PROFILE, you can find it by calling `$PROFILE`!
-
-## Important Information
-This config is special designed for an iso-de layout (german layout with special keys and big enter), so you may wanna customize key combinations by yourself
+## Custom Commands Branch
+In this branch, there are new command features, like `mkcd` or `cl` both will be merged with main soon!
 
 ## Common Issues
 You may find yourself in an situation, where you habe some troubbles! For this situation search online for general purposed WezTerm content or write an issue on this github repo!
+
+> Important Notice:
+> Write in issue that you use code from new / other branch!
 
 ## License
 Look up License File! 
