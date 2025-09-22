@@ -1,8 +1,27 @@
 # Module - color for ls command
 Import-Module Get-ChildItemColor -ErrorAction SilentlyContinue
 
-Remove-Item Alias:ls -ErrorAction SilentlyContinue
-function ls { Get-ChildItemColorFormatWide @args }
+# Code not working
+# Remove-Item Alias:ls -ErrorAction SilentlyContinue
+# function ls { Get-ChildItemColorFormatWide @args }
+
+# custom command: clear + ls
+function cl {
+ 
+  Clear-Host
+  Get-ChildItem
+}
+
+# custom command: mkdir $FILE | cd
+function mkcd {
+  param (
+	[Parameter(Mandatory = ${true})]
+	[string]${Name}
+  )
+
+  mkdir ${Name}
+  cd ${Name}
+}
 
 # Color for PS C:\Users\SeeSee1> -- ORANGE --
 function prompt {
