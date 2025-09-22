@@ -1,5 +1,5 @@
 # My-WezTerm-Co-Config
-My hole WezTerm Config
+My whole WezTerm Config
 
 ## About WezTerm
 WezTerm is a terminal emulattor with miltiplexer support... 
