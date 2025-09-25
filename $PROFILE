@@ -18,6 +18,7 @@ $reset  = "$esc[0m"
 function cl {
  
   Clear-Host
+  Get-ChildItem
   Get-ChildItemColor
 }
 
