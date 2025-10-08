@@ -16,6 +16,7 @@ $reset  = "$esc[0m"
 function cl {
  
   Clear-Host
+  prompt
   Get-ChildItem
 }
 
